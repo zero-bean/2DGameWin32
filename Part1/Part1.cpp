@@ -34,6 +34,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     game.Init(g_hWnd);
 
     MSG msg = {};
+    uint64 prevTick = 0;
 
     // 3) 메인 루프
     while (msg.message != WM_QUIT)
@@ -43,9 +44,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             ::DispatchMessage(&msg);
         }
         else {
-            // 게임
-            game.Update();
-            game.Render();
+            uint64 now = ::GetTickCount64();
+
+            if (now - prevTick >= 10) {
+                // 게임
+                game.Update();
+                game.Render();
+
+                prevTick = now;
+            }
+
         }
     }
 
