@@ -21,18 +21,18 @@ void InputManager::Update()
 
 			// 이전 프레임에 키를 누른 상태라면 PRESS
 			if (state == KeyState::Press || state == KeyState::Down)
-				state == KeyState::Press;
+				state = KeyState::Press;
 			else
-				state == KeyState::Down;
+				state = KeyState::Down;
 		}
 		else {
 			KeyState& state = _states[key];
 
 			// 이전 프레임에 키를 누른 상태라면 UP
 			if (state == KeyState::Press || state == KeyState::Down)
-				state == KeyState::Up;
+				state = KeyState::Up;
 			else
-				state == KeyState::None;
+				state = KeyState::None;
 		}
 	}
 
